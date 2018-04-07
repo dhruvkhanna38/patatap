@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CIRCLES PATATAP</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script type="text/javascript" src="C:\Users\dhruv khanna\Desktop\webd udemy\assignments\patatap\paper-full.js"></script>
+		<script type="text/javascript" src="howler.js"></script>
+		<script type="text/paperscript" canvas="myCanvas">		
+		  var circles = [];
+          var keyData = {
+          	a : {
+          		color : "purple" , 
+          		sounds : new Howl({
+                          src : ['sounds/bubbles.mp3'] ,
+                          html5 :true
+                 });
+          	    }  ,
+
+          	b : {
+          		color : "blue" ,
+          		sounds : new Howl({
+                          src : ['sounds/clay.mp3'] ,
+                          html5 :true
+                 });
+          	}    
+
+          };
+
+	      function onKeyDown(event) {   
+	      	                           
+				                       var x = Math.floor(Math.random() * view.size.width);
+				                       var y = Math.floor(Math.random() * view.size.height);
+				                       var newCircle = new Path.Circle(x, y, 70);
+				                       newCircle.fillColor = keyData[event.key].color;
+				                       keyData[event.key].sounds.play();
+                                       circles.push(newCircle);
+                                      
+                                    }      
+                                   
+                                   function onFrame(event){
+
+                                    for(var i=0;i<circles.length;i++)
+                                     { circles[i].fillColor.hue = circles[i].fillColor.hue + 1;
+                                       circles[i].scale(0.9);
+                                      }
+                                                    }
+                               
+	</script>
+	</head>
+	<body>
+		<canvas id="myCanvas" resize></canvas>
+	
+	</body>
+	</html>	
